@@ -1,0 +1,72 @@
+{
+  "id": "1686546",
+  "name": "通用平台",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1484888",
+      "name": "lock",
+      "font_class": "password",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "3061102",
+      "name": "设置",
+      "font_class": "setting",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "6239139",
+      "name": "user",
+      "font_class": "username",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "8439612",
+      "name": "人员",
+      "font_class": "member",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "8641099",
+      "name": "关于",
+      "font_class": "about",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "6029718",
+      "name": "日志管理",
+      "font_class": "log",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "7219476",
+      "name": "系统管理",
+      "font_class": "system",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "7998379",
+      "name": "接入管理",
+      "font_class": "assist",
+      "unicode": "e662",
+      "unicode_decimal": 58978
+    },
+    {
+      "icon_id": "3248580",
+      "name": "APP管理",
+      "font_class": "app",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    }
+  ]
+}
