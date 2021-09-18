@@ -125,7 +125,7 @@
           </MenuItem>
           <MenuItem name="money">
             <Icon type="ios-people" />
-            账务信息
+            账务结算
           </MenuItem>
           <MenuItem name="task">
             <Icon type="ios-people" />
@@ -435,7 +435,7 @@ import {mapActions} from 'vuex'
         console.log(13123, link);
         let menuObj={
           'index':'首页',
-          'money':'余额充值',
+          'money':'财务结算',
           'deal':'交易记录',
           'agent':'代理列表',
           'charge':'商户充值',

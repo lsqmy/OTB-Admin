@@ -94,8 +94,8 @@ export default {
       data: [],
       columns: [
         {
-          title: '姓名',
-          key: 'realName',
+          title: '用户名',
+          key: 'userName',
           minWidth:100
         },
         {
@@ -133,7 +133,12 @@ export default {
         {
           title: '创建时间',
           key: 'createTime',
-          minWidth:120
+          minWidth:120,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.createTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
       ],
       page: {

@@ -57,7 +57,7 @@
 <!--          </Col>-->
 <!--        </Row>-->
         <FormItem prop="productStyle" label="商户">
-          <Select v-model.trim="productData.userNameSeller">
+          <Select v-model.trim="productData.userNameSeller" filterable >
             <Option v-for="item in shopList" :key="item.userName" :value="item.userName">
               {{ item.userName }}({{ item.realName }})
             </Option>
@@ -153,24 +153,40 @@ export default {
       data: [],
       columns: [
         {
-          title: '订单id',
-          key: 'id',
-          minWidth:100
+          title: '创建时间',
+          key: 'createTime',
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.createTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
           title: '姓名',
-          key: 'userName',
-          minWidth:100
+          key: 'realName',
+          render: (h, params) => {
+            return h('span', params.row.realName + '(' + params.row.userName + ')');
+          }
         },
         {
           title: '金额',
           key: 'amount',
-          minWidth:150
+          render: (h, params) => {
+            return h('span', params.row.amount + '(元)');
+          }
+        },
+        {
+          title: '状态',
+          key: 'statusName',
+          align: 'center',
+        },
+        {
+          title: '类型 ',
+          key: 'typeName',
         },
         {
           title: '充值id',
           key: 'payId',
-          minWidth:200
         },
         {
           title: '充值截图',
@@ -180,25 +196,14 @@ export default {
           slot:'img'
         },
         {
-          title: '状态',
-          key: 'status',
-          align: 'center',
-          minWidth:150
-        },
-        {
-          title: '类型 ',
-          key: 'type',
-          minWidth:150
-        },
-        {
-          title: '创建时间',
-          key: 'createTime',
-          minWidth:120
-        },
-        {
           title: '处理时间',
           key: 'processTime',
-          minWidth:120
+          minWidth:120,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.processTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
       ],
       page: {

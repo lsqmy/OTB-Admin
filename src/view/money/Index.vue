@@ -51,6 +51,9 @@
       @on-cancel="cancel">
       <Table :columns="detailColumns" :data="detailData" stripe border height="640"
              :loading="loading">
+        <template slot-scope="{ row, index }" slot="payImg">
+          <img :src="row.payImg" alt="" style="width: 100%;">
+        </template>
       </Table>
       <Page :total="model.page.total" show-elevator show-sizer show-total class-name="page"
             :page-size-opts="model.page.pageSizePots"
@@ -85,78 +88,54 @@ export default {
         },
         {
           title: '状态',
-          key: 'status',
-          width: 65,
+          key: 'statusName',
           align: 'center',
-          render: (h, params) => {
-            const row = params.row;
-            var color = '';
-            var text = '';
-            if (row.fStatus === 1) {
-              color = 'gray';
-              text = '保存';
-            } else if (row.fStatus === 2) {
-              color = 'green';
-              text = '启用';
-            } else {
-              color = 'red';
-              text = '禁用';
-            }
-            return h('span', {
-              style: {
-                color: color,
-              }
-            }, text);
-          },
         },
         {
           title: '用户名',
           key: 'userName',
-          width: 100,
+          render: (h, params) => {
+            return h('span', params.row.userName + '(' + params.row.realName + ')');
+          }
         },
         {
-          title: '代理名称',
-          key: 'agentRealName',
-          width: 150,
-        },
-        {
-          title: '代理电话',
-          key: 'agentPhone',
-          width: 150,
-        },
-        {
-          title: 'commission',
-          key: 'commission',
-          width: 150,
-        },
-        {
-          title: 'currencyType',
-          key: 'currencyType',
-          width: 150,
-        },
-        {
-          title: '订单数',
-          key: 'orderCount',
-          width: 150,
+          title: '电话',
+          key: 'phone',
         },
         {
           title: '订单总金额',
           key: 'orderPriceTotal',
-          width: 150,
+          render: (h, params) => {
+            return h('span', params.row.orderPriceTotal + '(' + params.row.unit + ')');
+          }
         },
         {
-          title: '创建时间',
+          title: '佣金',
+          key: 'commission',
+          render: (h, params) => {
+            return h('span', params.row.commission + '(' + params.row.unit + ')');
+          }
+        },
+        {
+          title: '账单时间',
           key: 'createTime',
-          width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.createTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
-          title: '处理时间',
+          title: '结算时间',
           key: 'processTime',
-          width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.processTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
           title: '操作',
-          width: 150,
           fixed: 'right',
           slot: 'actions'
         }
@@ -169,7 +148,10 @@ export default {
         sort: '',     //排序列
         order: 'desc', //排序规则
       },
-      query: {},
+      query: {
+        pageNum: 1,
+        pageSize: 10
+      },
 
       detailColumns: [
         {
@@ -200,6 +182,7 @@ export default {
         {
           title: '截图',
           key: 'payImg',
+          slot: 'payImg',
           width: 100,
         },
         {
@@ -233,7 +216,7 @@ export default {
           width: 100,
         },
         {
-          title: 'commission',
+          title: '佣金',
           key: 'commission',
           width: 150,
         },
@@ -247,21 +230,41 @@ export default {
           title: '创建时间',
           key: 'createTime',
           width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.createTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
           title: '处理时间',
           key: 'processTime',
           width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.processTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
           title: '提交时间',
           key: 'commitTime',
           width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.commitTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
           title: '完成时间',
           key: 'completeTime',
           width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.completeTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
       ],
       detailData: [],

@@ -50,6 +50,9 @@
       @on-cancel="cancel">
       <Table :columns="productColumns" :data="productList" stripe border height="640"
              :loading="loading">
+        <template slot-scope="{ row, index }" slot="payImg">
+          <img :src="row.payImg" alt="" style="width: 100%;">
+        </template>
       </Table>
     </Modal>
   </div>
@@ -77,18 +80,24 @@ export default {
         },
         {
           title: '状态',
-          key: 'status',
+          key: 'statusName',
           width: 100,
         },
         {
           title: '订单金额',
           key: 'orderPrice',
           width: 100,
+          render: (h, params) => {
+            return h('span', params.row.orderPrice + '(' + params.row.unit + ')');
+          }
         },
         {
           title: '总金额',
           key: 'totalPrice',
           width: 100,
+          render: (h, params) => {
+            return h('span', params.row.totalPrice + '(元)');
+          }
         },
         {
           title: '币种',
@@ -98,6 +107,7 @@ export default {
         {
           title: '截图',
           key: 'payImg',
+          slot: 'payImg',
           width: 100,
         },
         {
@@ -131,9 +141,12 @@ export default {
           width: 100,
         },
         {
-          title: 'commission',
+          title: '佣金',
           key: 'commission',
           width: 150,
+          render: (h, params) => {
+            return h('span', params.row.commission + '(' + params.row.unit + ')');
+          }
         },
         {
           title: 'doDate',
@@ -145,21 +158,41 @@ export default {
           title: '创建时间',
           key: 'createTime',
           width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.createTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
           title: '处理时间',
           key: 'processTime',
           width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.processTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
           title: '提交时间',
           key: 'commitTime',
           width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.commitTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
           title: '完成时间',
           key: 'completeTime',
           width: 150,
+          render: (h,params)=>{
+            return h('span',
+              new Date(params.row.completeTime).Format('yyyy-MM-dd hh:mm:ss')
+            );
+          }
         },
         {
           title: '操作',

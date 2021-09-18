@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <section class="userInfoWrap">
+<!--    <section class="userInfoWrap">
       <Form :model="userInfo" label-position="left" :label-width="100">
         <FormItem label="用户名">
           <Input v-model="userInfo.userName" readonly></Input>
@@ -12,11 +12,11 @@
           <Input v-model="userInfo.phone" readonly></Input>
         </FormItem>
         <FormItem label="注册时间">
-<!--          <span>{{userInfo.createTime|fmtTime}}</span>-->
+&lt;!&ndash;          <span>{{userInfo.createTime|fmtTime}}</span>&ndash;&gt;
           <Input :value="userInfo.createTime|fmtTime" readonly></Input>
         </FormItem>
       </Form>
-    </section>
+    </section>-->
     <Row :gutter="16">
       <Col span="12">
         <Card>
